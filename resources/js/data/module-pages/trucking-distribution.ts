@@ -1,0 +1,218 @@
+import type { ModulePageContent } from '@/types/module-page';
+import {
+    BarChart3,
+    Boxes,
+    CircleCheck,
+    ClipboardCheck,
+    Fuel,
+    Landmark,
+    MapPin,
+    Package,
+    Route,
+    ShoppingCart,
+    Timer,
+    Truck,
+    Users,
+    Warehouse,
+    Wrench,
+} from 'lucide-react';
+
+export const truckingDistributionPageContent: ModulePageContent = {
+    slug: 'trucking-distribution',
+    badgeLabel: 'Trucking & Distribution Module',
+    heroTitle: 'Move Products Smarter.',
+    heroTitleAccent: 'Deliver Greater Value.',
+    heroDescription:
+        'TechBridge Trucking & Distribution helps you plan routes, schedule deliveries and manage fleets in one integrated platform. Give dispatch, drivers and customers visibility from order pickup through proof of delivery.',
+    heroBackgroundImage: '/images/marketing/trucking-distribution/hero-background.jpg',
+    heroImage: '/images/marketing/trucking-distribution/hero-laptop.png',
+    heroImageAlt: 'TechBridge ERP distribution dashboard on laptop',
+    trustIndicators: [
+        {
+            titleBold: 'Real-time Shipment',
+            titleRegular: 'Tracking',
+            icon: Timer,
+            accent: 'green',
+        },
+        {
+            titleBold: 'Optimized',
+            titleRegular: 'Routing',
+            icon: Route,
+            accent: 'blue',
+        },
+        {
+            titleBold: 'Efficient & Reliable',
+            titleRegular: 'Delivery',
+            icon: CircleCheck,
+            accent: 'purple',
+        },
+    ],
+    featuresEyebrow: 'Key Features',
+    featuresTitle: 'Everything You Need for Modern Distribution',
+    featuresDescription:
+        'Plan loads, dispatch drivers and confirm deliveries with tools built for fleet and logistics teams.',
+    features: [
+        {
+            title: 'Delivery Management',
+            description: 'Create, schedule and track deliveries from one control center.',
+            icon: Truck,
+            accent: 'green',
+        },
+        {
+            title: 'Route Optimization',
+            description: 'Plan efficient routes to reduce miles, fuel and time on the road.',
+            icon: MapPin,
+            accent: 'blue',
+        },
+        {
+            title: 'Fleet Management',
+            description: 'Manage vehicles, driver assignments and maintenance schedules.',
+            icon: Wrench,
+            accent: 'purple',
+        },
+        {
+            title: 'Load Management',
+            description: 'Consolidate shipments to make the best use of vehicle capacity.',
+            icon: Package,
+            accent: 'orange',
+        },
+        {
+            title: 'Proof of Delivery',
+            description: 'Capture signatures, photos and notes at the point of delivery.',
+            icon: ClipboardCheck,
+            accent: 'pink',
+        },
+        {
+            title: 'Customer Deliveries',
+            description: 'Keep customers informed with status tied to sales and inventory.',
+            icon: Users,
+            accent: 'teal',
+        },
+        {
+            title: 'Reports & Analytics',
+            description: 'Monitor on-time performance, costs and fleet utilization.',
+            icon: BarChart3,
+            accent: 'indigo',
+        },
+        {
+            title: 'Fuel & Maintenance',
+            description: 'Track fuel consumption and service intervals by asset.',
+            icon: Fuel,
+            accent: 'lime',
+        },
+    ],
+    workflowEyebrow: 'How it works',
+    workflowTitle: 'From Order to Delivery',
+    workflowDescription: 'A clear flow from sales order through dispatch, delivery and performance review.',
+    workflowSteps: [
+        {
+            title: 'Create Delivery',
+            description: 'Generate delivery jobs from sales orders.',
+            icon: Package,
+            accent: 'blue',
+        },
+        {
+            title: 'Plan & Assign',
+            description: 'Optimize the route and assign a driver and vehicle.',
+            icon: Route,
+            accent: 'green',
+        },
+        {
+            title: 'Dispatch',
+            description: 'Send trip details to the driver with navigation support.',
+            icon: Truck,
+            accent: 'purple',
+        },
+        {
+            title: 'Deliver & Confirm',
+            description: 'Complete delivery and capture proof on site.',
+            icon: ClipboardCheck,
+            accent: 'orange',
+        },
+        {
+            title: 'Track & Analyze',
+            description: 'Monitor status in real time and review performance.',
+            icon: BarChart3,
+            accent: 'pink',
+        },
+    ],
+    screenshotEyebrow: 'Access anytime, anywhere',
+    screenshotTitle: 'Distribution Tools Built for the Road',
+    screenshotDescription:
+        'Dispatchers use desktop dashboards; drivers stay connected on mobile with GPS-friendly workflows.',
+    screenshotBullets: [
+        'Real-time shipment and vehicle tracking',
+        'Mobile-friendly views for drivers in the field',
+        'GPS-aware routing and trip updates',
+        'Scales from a few vehicles to regional fleets',
+        'Integrated with sales, inventory and finance',
+    ],
+    screenshotImages: [
+        {
+            src: '/images/marketing/trucking-distribution/screenshots-desktop-mobile.png',
+            alt: 'TechBridge Trucking & Distribution screens — illustrative until distribution screenshots are exported',
+            className: 'h-auto w-full max-w-[36rem] object-contain xl:max-w-[40rem]',
+        },
+    ],
+    integrationsEyebrow: 'Works seamlessly with other modules',
+    integrationsTitle: 'Fully Integrated Across Your Business Operations',
+    integrations: [
+        {
+            title: 'Inventory',
+            description: 'Pick, pack and stock levels aligned with outbound moves.',
+            icon: Warehouse,
+            accent: 'orange',
+            moduleSlug: 'inventory',
+        },
+        {
+            title: 'Sales & CRM',
+            description: 'Customer orders flow into delivery planning.',
+            icon: Boxes,
+            accent: 'purple',
+            moduleSlug: 'sales-crm',
+        },
+        {
+            title: 'Procurement',
+            description: 'Inbound supplier deliveries and transfers.',
+            icon: ShoppingCart,
+            accent: 'teal',
+            moduleSlug: 'procurement',
+        },
+        {
+            title: 'HR & Payroll',
+            description: 'Driver records, shifts and payroll context.',
+            icon: Users,
+            accent: 'pink',
+            moduleSlug: 'hr-payroll',
+        },
+        {
+            title: 'Finance',
+            description: 'Fuel, maintenance and delivery cost tracking.',
+            icon: Landmark,
+            accent: 'blue',
+            moduleSlug: 'finance',
+        },
+        {
+            title: 'Reports & Analytics',
+            description: 'Fleet KPIs alongside operational dashboards.',
+            icon: BarChart3,
+            accent: 'green',
+            moduleSlug: 'reports-analytics',
+        },
+    ],
+    testimonialEyebrow: 'What our clients say',
+    testimonialTitle: 'Trusted by Businesses Like Yours',
+    testimonials: [
+        {
+            quote:
+                'We finally see every truck and delivery on one map. On-time rates improved and customers get accurate ETAs without chasing our team.',
+            authorName: 'Sarah Wangu',
+            authorRole: 'Operations Manager, HealthyPlus Ltd',
+            rating: 5,
+        },
+    ],
+    testimonialPaginationDots: 4,
+    bottomCtaTitle: 'Ready to Optimize Your Distribution?',
+    bottomCtaDescription:
+        'Book a personalized demo and see how TechBridge Trucking & Distribution can work for your business.',
+};
