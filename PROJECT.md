@@ -42,7 +42,7 @@ Business owners, finance teams, HR leaders, procurement teams, operations manage
 | Request a Quote | Route + placeholder only |
 | Resources & Blog | Route + placeholder only |
 | Blog Article | Not started |
-| FAQs & Support | Route + placeholder only |
+| FAQs & Support | **Mockup implemented** — hero search, category grid, FAQ accordions, sidebar, form UI; wire form + extra category copy later |
 | Case Studies | Route + placeholder only |
 | Privacy Policy | Route + placeholder only |
 | Terms of Service | Route + placeholder only |

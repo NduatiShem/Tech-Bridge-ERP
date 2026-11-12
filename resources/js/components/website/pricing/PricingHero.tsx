@@ -1,6 +1,7 @@
 import Breadcrumb from '@/components/website/Breadcrumb';
 import ButtonWithArrow from '@/components/website/ButtonWithArrow';
 import Container from '@/components/website/Container';
+import HeroPhotograph from '@/components/website/marketing/HeroPhotograph';
 import SecondaryButton from '@/components/website/SecondaryButton';
 import { PRICING_BENEFITS, PRICING_HERO, type PricingBenefitAccent } from '@/data/pricing';
 import { pricingHeroAnimate, pricingMotionDelayStyle } from '@/lib/pricing-motion';
@@ -9,42 +10,11 @@ import { Check, Cog, Headphones, Shield, SlidersHorizontal } from 'lucide-react'
 import type { LucideIcon } from 'react';
 import type { CSSProperties } from 'react';
 
-/** Fade subject into hero + swoosh — wide soft left edge (comp). */
-const HERO_PHOTO_MASK: CSSProperties = {
-    WebkitMaskImage: `
-        linear-gradient(to right,
-            transparent 0%,
-            rgba(0,0,0,0.35) 12%,
-            black 30%,
-            black 100%
-        ),
-        linear-gradient(to bottom,
-            transparent 0%,
-            black 10%,
-            black 90%,
-            transparent 100%
-        )
-    `,
-    maskImage: `
-        linear-gradient(to right,
-            transparent 0%,
-            rgba(0,0,0,0.35) 12%,
-            black 30%,
-            black 100%
-        ),
-        linear-gradient(to bottom,
-            transparent 0%,
-            black 10%,
-            black 90%,
-            transparent 100%
-        )
-    `,
-    WebkitMaskComposite: 'source-in',
-    maskComposite: 'intersect',
-};
-
 /** Desktop: higher X pulls subject left in frame so face clears the Invest card on the right. */
 const DESKTOP_PHOTO_POSITION = '68% 32%';
+
+/** Mobile / tablet: anchor face + tablet on the right for overlap with Invest card. */
+const MOBILE_PHOTO_POSITION = '56% 24%';
 
 const STRIP_ICONS: LucideIcon[] = [Cog, SlidersHorizontal, Headphones, Shield];
 
@@ -60,12 +30,13 @@ function BenefitsCard({ className, style }: { className?: string; style?: CSSPro
         <aside
             className={cn(
                 'w-full max-w-sm overflow-hidden rounded-2xl shadow-[0_16px_44px_-14px_rgba(23,36,59,0.32)] sm:max-w-[14.5rem]',
+                'max-lg:max-w-[12rem] max-lg:rounded-xl max-lg:shadow-[0_12px_32px_-12px_rgba(23,36,59,0.28)]',
                 className,
             )}
             style={style}
         >
-            <div className="bg-brand-navy px-4 py-5 sm:px-5 sm:py-6">
-                <p className="text-lg leading-[1.25] font-bold text-white sm:text-[1.15rem]">
+            <div className="bg-brand-navy px-4 py-5 max-lg:px-3 max-lg:py-3.5 sm:px-5 sm:py-6">
+                <p className="text-lg leading-[1.25] font-bold text-white max-lg:text-[0.95rem] max-lg:leading-snug sm:text-[1.15rem]">
                     Invest in a
                     <br />
                     Smarter Way
@@ -76,9 +47,9 @@ function BenefitsCard({ className, style }: { className?: string; style?: CSSPro
                 </p>
                 <span className="bg-brand-green mt-3 block h-1 w-10 rounded-full" aria-hidden />
             </div>
-            <ul className="space-y-3 bg-white px-4 py-5 sm:px-5">
+            <ul className="space-y-2.5 bg-white px-4 py-4 max-lg:space-y-2 max-lg:px-3 max-lg:py-3 sm:px-5 sm:py-5">
                 {PRICING_HERO.highlights.map((item) => (
-                    <li key={item} className="text-brand-navy flex items-center gap-2.5 text-sm font-medium">
+                    <li key={item} className="text-brand-navy flex items-center gap-2 text-sm font-medium max-lg:gap-1.5 max-lg:text-xs">
                         <span className="bg-brand-green inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full">
                             <Check className="h-3 w-3 text-white" strokeWidth={3} aria-hidden />
                         </span>
@@ -87,44 +58,6 @@ function BenefitsCard({ className, style }: { className?: string; style?: CSSPro
                 ))}
             </ul>
         </aside>
-    );
-}
-
-type HeroPhotographProps = {
-    className?: string;
-    style?: CSSProperties;
-    objectPosition?: string;
-    masked?: boolean;
-};
-
-function HeroPhotograph({ className, style, objectPosition, masked }: HeroPhotographProps) {
-    const imgStyle: CSSProperties = {
-        objectPosition: objectPosition ?? DESKTOP_PHOTO_POSITION,
-        ...(masked ? HERO_PHOTO_MASK : {}),
-    };
-
-    return (
-        <figure
-            className={cn('relative h-full w-full', className)}
-            style={style}
-            aria-label={PRICING_HERO.heroPersonImageAlt}
-        >
-            <img
-                src={PRICING_HERO.heroPhotograph}
-                alt=""
-                role="presentation"
-                className="h-full w-full object-cover"
-                style={imgStyle}
-                decoding="async"
-                fetchPriority="high"
-            />
-            {!masked ? (
-                <div
-                    className="pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#EFF7FF] via-[#EFF7FF]/70 to-transparent"
-                    aria-hidden
-                />
-            ) : null}
-        </figure>
     );
 }
 
@@ -138,21 +71,43 @@ export default function PricingHero() {
                 aria-hidden
             />
 
-            <Container className="relative z-10 pt-8 pb-6 sm:pt-10 sm:pb-8 lg:pt-11 lg:pb-6 xl:pb-8">
-                <Breadcrumb items={breadcrumbs} className="text-muted-foreground mb-5 lg:mb-6" />
+            <Container className="relative z-10 pt-6 pb-3 sm:pt-8 sm:pb-4 lg:pt-11 lg:pb-6 xl:pb-8">
+                <Breadcrumb items={breadcrumbs} className="text-muted-foreground mb-3 max-lg:mb-2.5 lg:mb-6" />
 
                 <div
-                        className="
-                            relative grid gap-8
-                            lg:min-h-[27rem]
-                            lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]
-                            lg:items-stretch
-                            lg:gap-6
-                            xl:min-h-[29rem]
-                            xl:gap-8
-                        "
-                    >
-                    <div className="order-1 min-w-0 text-left lg:max-w-xl lg:self-center">
+                    className="
+                        relative grid gap-0
+                        max-lg:min-h-[21.5rem] max-lg:pb-1
+                        sm:max-lg:min-h-[23rem]
+                        md:max-lg:min-h-[24.5rem]
+                        lg:min-h-[27rem]
+                        lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]
+                        lg:items-stretch
+                        lg:gap-6
+                        xl:min-h-[29rem]
+                        xl:gap-8
+                    "
+                >
+                    {/* Mobile / tablet — masked photo only (Invest card hidden below lg) */}
+                    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden lg:hidden">
+                        <div
+                            className={cn(
+                                'absolute inset-y-0 left-[30%] right-0 sm:left-[24%] md:left-[18%]',
+                                pricingHeroAnimate('fade-right'),
+                            )}
+                            style={pricingMotionDelayStyle(220)}
+                        >
+                            <HeroPhotograph
+                                src={PRICING_HERO.heroPhotograph}
+                                alt={PRICING_HERO.heroPersonImageAlt}
+                                className="h-full w-full"
+                                masked
+                                objectPosition={MOBILE_PHOTO_POSITION}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="relative z-10 order-1 min-w-0 text-left lg:max-w-xl lg:self-center">
                         <p
                             className={cn(
                                 'bg-brand-green inline-flex w-fit rounded-full px-4 py-1.5 text-[11px] font-bold tracking-[0.14em] text-white uppercase',
@@ -164,7 +119,7 @@ export default function PricingHero() {
                         </p>
                         <h1
                             className={cn(
-                                'text-brand-navy mt-5 text-[2rem] leading-[1.15] font-bold tracking-tight sm:text-4xl lg:text-[2.75rem] lg:leading-[1.12]',
+                                'text-brand-navy mt-3 max-w-[17.5rem] text-[1.65rem] leading-[1.12] font-bold tracking-tight sm:max-w-none sm:text-[1.85rem] md:text-3xl lg:mt-5 lg:max-w-none lg:text-[2.75rem] lg:leading-[1.12]',
                                 pricingHeroAnimate('fade-up'),
                             )}
                             style={pricingMotionDelayStyle(90)}
@@ -175,7 +130,7 @@ export default function PricingHero() {
                         </h1>
                         <p
                             className={cn(
-                                'text-muted-foreground mt-5 max-w-lg text-base leading-relaxed sm:text-lg',
+                                'text-muted-foreground mt-2.5 max-w-[19rem] text-sm leading-snug sm:mt-3 sm:max-w-md sm:text-base sm:leading-relaxed lg:mt-5 lg:max-w-lg lg:text-lg',
                                 pricingHeroAnimate('fade-up'),
                             )}
                             style={pricingMotionDelayStyle(180)}
@@ -184,17 +139,21 @@ export default function PricingHero() {
                         </p>
                         <div
                             className={cn(
-                                'mt-8 flex flex-col gap-3 sm:flex-row sm:items-center',
+                                'mt-4 flex flex-row flex-wrap items-center gap-2 max-lg:relative max-lg:z-20 lg:mt-8 lg:gap-3',
                                 pricingHeroAnimate('fade-up'),
                             )}
                             style={pricingMotionDelayStyle(270)}
                         >
-                            <ButtonWithArrow href={route('book-demo')} nudgeArrowOnHover>
+                            <ButtonWithArrow
+                                href={route('book-demo')}
+                                nudgeArrowOnHover
+                                className="max-lg:min-h-10 max-lg:shrink-0 max-lg:px-3.5 max-lg:py-2 max-lg:text-xs"
+                            >
                                 Book a Demo
                             </ButtonWithArrow>
                             <SecondaryButton
                                 href={route('contact')}
-                                className="border-gray-300 bg-white text-brand-navy shadow-none hover:border-gray-400 hover:bg-white"
+                                className="border-gray-300 bg-white text-brand-navy shadow-none hover:border-gray-400 hover:bg-white max-lg:min-h-10 max-lg:shrink-0 max-lg:px-3 max-lg:py-2 max-lg:text-xs"
                             >
                                 Talk to Our Team
                             </SecondaryButton>
@@ -210,7 +169,13 @@ export default function PricingHero() {
                             )}
                             style={pricingMotionDelayStyle(220)}
                         >
-                            <HeroPhotograph className="h-full w-full" masked objectPosition={DESKTOP_PHOTO_POSITION} />
+                            <HeroPhotograph
+                                src={PRICING_HERO.heroPhotograph}
+                                alt={PRICING_HERO.heroPersonImageAlt}
+                                className="h-full w-full"
+                                masked
+                                objectPosition={DESKTOP_PHOTO_POSITION}
+                            />
                         </div>
                         <BenefitsCard
                             className={cn(
@@ -220,32 +185,15 @@ export default function PricingHero() {
                             style={pricingMotionDelayStyle(420)}
                         />
                     </div>
-
-                    <div
-                        className={cn(
-                            'order-2 lg:hidden',
-                            pricingHeroAnimate('fade-right'),
-                        )}
-                        style={pricingMotionDelayStyle(180)}
-                    >
-                        <HeroPhotograph className="h-56 w-full overflow-hidden sm:h-72" objectPosition="48% 38%" />
-                    </div>
-
-                    <div
-                        className={cn('order-3 lg:hidden', pricingHeroAnimate('fade-in'))}
-                        style={pricingMotionDelayStyle(320)}
-                    >
-                        <BenefitsCard className="mx-auto mt-6 max-w-sm" />
-                    </div>
                 </div>
             </Container>
 
-            <div className="relative z-20 -mt-4 lg:-mt-6" role="region" aria-label="Key pricing benefits">
-                <Container>
+            <div className="relative z-20 max-lg:-mt-1 lg:-mt-6" role="region" aria-label="Key pricing benefits">
+                <Container className="max-lg:px-3 sm:max-lg:px-4">
                     <ul
                         className={cn(
-                            'grid list-none gap-4 rounded-md bg-white/95 px-5 py-4 backdrop-blur-sm sm:grid-cols-2 sm:px-6 sm:py-5',
-                            'shadow-[0_2px_18px_-10px_rgba(23,36,59,0.14)] lg:grid-cols-4 lg:gap-0',
+                            'grid list-none grid-cols-4 gap-0 rounded-t-2xl rounded-b-md bg-white/95 px-2 py-3 backdrop-blur-sm',
+                            'shadow-[0_2px_18px_-10px_rgba(23,36,59,0.14)] sm:px-3 sm:py-3.5 lg:rounded-md lg:px-6 lg:py-5',
                         )}
                     >
                         {PRICING_BENEFITS.map((benefit, index) => {
@@ -255,20 +203,26 @@ export default function PricingHero() {
                                 <li
                                     key={benefit.title}
                                     className={cn(
-                                        'flex items-center gap-2.5 sm:gap-3',
-                                        !isLast && 'lg:border-r lg:border-gray-200/90 lg:pr-5',
+                                        'flex min-w-0 flex-col items-center gap-1 px-1 text-center sm:gap-1.5 lg:flex-row lg:items-center lg:gap-3 lg:px-0 lg:text-left',
+                                        !isLast && 'border-r border-gray-200/85 lg:pr-5',
                                         !isLast && 'lg:mr-5',
                                     )}
                                 >
                                     <span
                                         className={cn(
-                                            'inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full sm:h-10 sm:w-10',
+                                            'inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full sm:h-8 sm:w-8 lg:h-10 lg:w-10',
                                             STRIP_ICON_RING[benefit.accent],
                                         )}
                                     >
-                                        <Icon className="h-[1.05rem] w-[1.05rem] sm:h-[1.15rem] sm:w-[1.15rem]" strokeWidth={2} aria-hidden />
+                                        <Icon
+                                            className="h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-[1.15rem] lg:w-[1.15rem]"
+                                            strokeWidth={2}
+                                            aria-hidden
+                                        />
                                     </span>
-                                    <p className="text-brand-navy text-xs leading-snug font-semibold sm:text-[0.8125rem]">{benefit.title}</p>
+                                    <p className="text-brand-navy text-[0.625rem] leading-tight font-semibold sm:text-[0.6875rem] lg:text-[0.8125rem] lg:leading-snug">
+                                        {benefit.title}
+                                    </p>
                                 </li>
                             );
                         })}
@@ -276,7 +230,7 @@ export default function PricingHero() {
                 </Container>
             </div>
 
-            <div className="h-5 sm:h-6 lg:h-8" aria-hidden />
+            <div className="h-3 sm:h-4 lg:h-8" aria-hidden />
         </section>
     );
 }

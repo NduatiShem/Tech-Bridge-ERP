@@ -37,7 +37,7 @@ Route::get('/contact', fn () => Inertia::render('Placeholder', ['pageTitle' => '
 Route::get('/book-demo', fn () => Inertia::render('Placeholder', ['pageTitle' => 'Book a Demo']))->name('book-demo');
 Route::get('/request-quote', fn () => Inertia::render('Placeholder', ['pageTitle' => 'Request a Quote']))->name('request-quote');
 Route::get('/why-techbridge', fn () => Inertia::render('Placeholder', ['pageTitle' => 'Why TechBridge']))->name('why-techbridge');
-Route::get('/faqs', fn () => Inertia::render('Placeholder', ['pageTitle' => 'FAQs & Support']))->name('faqs');
+Route::get('/faqs', fn () => Inertia::render('FaqsSupport'))->name('faqs');
 Route::get('/case-studies', fn () => Inertia::render('Placeholder', ['pageTitle' => 'Case Studies']))->name('case-studies');
 Route::get('/privacy-policy', fn () => Inertia::render('Placeholder', ['pageTitle' => 'Privacy Policy']))->name('privacy-policy');
 Route::get('/terms-of-service', fn () => Inertia::render('Placeholder', ['pageTitle' => 'Terms of Service']))->name('terms-of-service');
