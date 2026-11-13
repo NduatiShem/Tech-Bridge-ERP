@@ -258,15 +258,38 @@ export const ABOUT_MOBILE_HERO_PHOTO_MASK: CSSProperties = {
     maskComposite: 'intersect',
 };
 
-export type HeroPhotoMaskProfile = 'default' | 'support' | 'support-mobile' | 'about' | 'about-mobile';
+/** Request quote — same masks as About (proven blend; no extra overlays). */
+export const REQUEST_QUOTE_HERO_PHOTO_MASK: CSSProperties = ABOUT_HERO_PHOTO_MASK;
+export const REQUEST_QUOTE_MOBILE_HERO_PHOTO_MASK: CSSProperties = ABOUT_MOBILE_HERO_PHOTO_MASK;
+
+/** Contact hero — same masks as About / Request Quote (swoosh + corner feather). */
+export const CONTACT_HERO_PHOTO_MASK: CSSProperties = ABOUT_HERO_PHOTO_MASK;
+export const CONTACT_MOBILE_HERO_PHOTO_MASK: CSSProperties = ABOUT_MOBILE_HERO_PHOTO_MASK;
+
+export type HeroPhotoMaskProfile =
+    | 'default'
+    | 'support'
+    | 'support-mobile'
+    | 'contact'
+    | 'contact-mobile'
+    | 'about'
+    | 'about-mobile'
+    | 'quote'
+    | 'quote-mobile';
 
 const MASK_BY_PROFILE: Record<HeroPhotoMaskProfile, CSSProperties> = {
     default: HERO_PHOTO_MASK,
     support: SUPPORT_HERO_PHOTO_MASK,
     'support-mobile': SUPPORT_MOBILE_HERO_PHOTO_MASK,
+    contact: ABOUT_HERO_PHOTO_MASK,
+    'contact-mobile': ABOUT_MOBILE_HERO_PHOTO_MASK,
     about: ABOUT_HERO_PHOTO_MASK,
     'about-mobile': ABOUT_MOBILE_HERO_PHOTO_MASK,
+    quote: REQUEST_QUOTE_HERO_PHOTO_MASK,
+    'quote-mobile': REQUEST_QUOTE_MOBILE_HERO_PHOTO_MASK,
 };
+
+const MASK_ON_WRAPPER_PROFILES: ReadonlySet<HeroPhotoMaskProfile> = new Set();
 
 type HeroPhotographProps = {
     src: string;
@@ -274,6 +297,10 @@ type HeroPhotographProps = {
     className?: string;
     style?: CSSProperties;
     objectPosition?: string;
+    /** Scales the image inside the frame (e.g. 0.9 shows more of the scene under object-cover). */
+    imageScale?: number;
+    objectFit?: 'cover' | 'contain';
+    heroBackgroundBlend?: boolean;
     masked?: boolean;
     maskProfile?: HeroPhotoMaskProfile;
 };
@@ -284,30 +311,41 @@ export default function HeroPhotograph({
     className,
     style,
     objectPosition = '68% 32%',
+    imageScale = 1,
+    objectFit = 'cover',
+    heroBackgroundBlend = false,
     masked = false,
     maskProfile = 'default',
 }: HeroPhotographProps) {
     const maskStyle = masked ? MASK_BY_PROFILE[maskProfile] : undefined;
+    const maskOnWrapper = Boolean(maskStyle && MASK_ON_WRAPPER_PROFILES.has(maskProfile));
     const imgStyle: CSSProperties = {
         objectPosition,
+        transform: objectFit === 'cover' && imageScale !== 1 ? `scale(${imageScale})` : undefined,
+        ...(maskStyle && !maskOnWrapper ? maskStyle : undefined),
+    };
+
+    const figureStyle: CSSProperties = {
+        ...style,
+        ...(maskOnWrapper ? maskStyle : undefined),
     };
 
     return (
         <figure
-            className={cn('relative h-full w-full', className)}
-            style={{ ...style, ...maskStyle }}
+            className={cn('relative h-full w-full overflow-hidden', objectFit === 'contain' && 'bg-transparent', className)}
+            style={figureStyle}
             aria-label={alt}
         >
             <img
                 src={src}
                 alt=""
                 role="presentation"
-                className="h-full w-full object-cover"
+                className={cn('h-full w-full', objectFit === 'contain' ? 'object-contain' : 'object-cover')}
                 style={imgStyle}
                 decoding="async"
                 fetchPriority="high"
             />
-            {!masked ? (
+            {!masked && !heroBackgroundBlend ? (
                 <div
                     className="pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#EFF7FF] via-[#EFF7FF]/70 to-transparent"
                     aria-hidden

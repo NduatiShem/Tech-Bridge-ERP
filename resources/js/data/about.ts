@@ -94,7 +94,59 @@ export const ABOUT_STORY = {
     imageAlt:
         'Four TechBridge colleagues reviewing a laptop together in a bright, modern office',
     ctaLabel: 'Our Journey',
-    ctaHref: 'contact' as const,
+    ctaHref: '#our-journey',
+};
+
+export type AboutJourneyMilestone = {
+    year: string;
+    title: string;
+    description: string;
+    accent: AboutAccent;
+};
+
+/** Timeline copy from approved comp — TODO: verify dates and client-count claims before production. */
+export const ABOUT_JOURNEY = {
+    heading: 'Our Journey',
+    description: 'Key milestones in our growth and evolution.',
+    items: [
+        {
+            year: '2020',
+            title: 'Company Founded',
+            description: 'Started with a vision to bridge businesses with technology.',
+            accent: 'green',
+        },
+        {
+            year: '2021',
+            title: 'First ERP Release',
+            description: 'Launched our initial ERP modules for SMEs.',
+            accent: 'blue',
+        },
+        {
+            year: '2022',
+            title: 'Industry Expansion',
+            description:
+                'Expanded to multiple industries including manufacturing, distribution, and retail.',
+            accent: 'purple',
+        },
+        {
+            year: '2023',
+            title: 'Growing Client Base',
+            description: 'Reached 100+ businesses using TechBridge ERP. TODO: verify',
+            accent: 'orange',
+        },
+        {
+            year: '2024',
+            title: 'Enhanced Platform',
+            description: 'Introduced new modules and advanced reporting capabilities.',
+            accent: 'blue',
+        },
+        {
+            year: '2025',
+            title: 'Continued Innovation',
+            description: 'Focused on AI insights, mobile access, and greater scalability.',
+            accent: 'green',
+        },
+    ] satisfies AboutJourneyMilestone[],
 };
 
 export type AboutWhyChooseItem = {

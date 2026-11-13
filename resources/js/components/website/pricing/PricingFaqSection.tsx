@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { ArrowRight, Minus, Plus } from 'lucide-react';
 import { useId, useState } from 'react';
 
-const FAQ_STAGGER_MS = 80;
+const FAQ_STAGGER_MS = 60;
 
 function FaqCard({ faq }: { faq: PricingFaqItem }) {
     const [expanded, setExpanded] = useState(false);
@@ -77,14 +77,14 @@ export default function PricingFaqSection() {
     return (
         <section className="bg-white py-12 sm:py-14 lg:py-16">
             <Container>
-                <div className="mb-7 text-center sm:mb-9">
+                <RevealOnView className="mb-7 text-center sm:mb-9">
                     <h2 className="text-brand-navy text-[26px] font-bold tracking-tight sm:text-[30px]">
                         {PRICING_FAQ_SECTION.title}
                     </h2>
                     <p className="text-muted-foreground mx-auto mt-2 max-w-2xl text-sm leading-relaxed sm:text-base">
                         {PRICING_FAQ_SECTION.description}
                     </p>
-                </div>
+                </RevealOnView>
 
                 <div className="grid w-full grid-cols-1 items-start gap-4 md:grid-cols-2 md:gap-5 lg:gap-x-6 lg:gap-y-5">
                     {PRICING_FAQS.map((faq, index) => (

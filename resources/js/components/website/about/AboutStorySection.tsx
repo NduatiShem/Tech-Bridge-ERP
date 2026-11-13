@@ -33,7 +33,14 @@ export default function AboutStorySection() {
                             ))}
                         </div>
                         <div className="mt-6">
-                            <ButtonWithArrow href={route(ABOUT_STORY.ctaHref)} nudgeArrowOnHover>
+                            <ButtonWithArrow
+                                href={
+                                    ABOUT_STORY.ctaHref.startsWith('#')
+                                        ? ABOUT_STORY.ctaHref
+                                        : route(ABOUT_STORY.ctaHref)
+                                }
+                                nudgeArrowOnHover
+                            >
                                 {ABOUT_STORY.ctaLabel}
                             </ButtonWithArrow>
                         </div>

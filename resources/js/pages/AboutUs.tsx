@@ -1,4 +1,5 @@
 import AboutHero from '@/components/website/about/AboutHero';
+import AboutJourneySection from '@/components/website/about/AboutJourneySection';
 import AboutLeadershipSection from '@/components/website/about/AboutLeadershipSection';
 import AboutMissionVisionValues from '@/components/website/about/AboutMissionVisionValues';
 import AboutStatsBand from '@/components/website/about/AboutStatsBand';
@@ -19,6 +20,7 @@ export default function AboutUs() {
             <AboutMissionVisionValues />
             <AboutStatsBand />
             <AboutStorySection />
+            <AboutJourneySection />
             <AboutWhyChooseSection />
             <AboutLeadershipSection />
 

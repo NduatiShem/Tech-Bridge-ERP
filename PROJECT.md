@@ -33,19 +33,19 @@ Business owners, finance teams, HR leaders, procurement teams, operations manage
 | Asset Management | **Mockup sections complete** — verify CareWell testimonial; replace hero/screenshot assets |
 | Reports & Analytics | **Mockup sections complete** — verify MediFarm testimonial; replace hero/screenshot assets |
 | Trucking & Distribution | **Mockup sections complete** — verify HealthyPlus testimonial; replace hero/screenshot assets |
-| Solutions & Industries | Route + placeholder only |
+| Solutions & Industries | **Mockup implemented** — hero, industry filters/cards, success stories, approach steps, bottom CTA; replace industry/story photos; verify case study copy |
 | Why TechBridge | Route + placeholder only |
 | Pricing & Plans | **Mockup implemented** — verify dollar amounts & plan limits before production |
-| About Us | **Mockup implemented** — hero, mission/vision/values, stats, story, why choose, leadership, bottom CTA; replace hero/story photos; verify stats |
-| Contact Us | Route + placeholder only |
+| About Us | **Mockup implemented** — hero, mission/vision/values, stats, story, **Our Journey** timeline, why choose, leadership, bottom CTA; replace hero/story photos; verify stats & milestone copy |
+| Contact Us | **Mockup implemented** — hero, contact info, message form UI, location map, alternate channels, FAQ accordion, bottom CTA; wire form backend; verify map/office photo |
 | Book a Demo | Route + placeholder only |
-| Request a Quote | Route + placeholder only |
+| Request a Quote | **Mockup implemented** — hero, quote form UI, sidebar, how-it-works, testimonial layout (verify quotes); form backend pending |
 | Resources & Blog | Route + placeholder only |
 | Blog Article | Not started |
 | FAQs & Support | **Mockup implemented** — hero search, category grid, FAQ accordions, sidebar, form UI; wire form + extra category copy later |
 | Case Studies | Route + placeholder only |
-| Privacy Policy | Route + placeholder only |
-| Terms of Service | Route + placeholder only |
+| Privacy Policy | **Mockup implemented** — hero, sticky nav, 14 section accordions (collect tiles + check lists), sidebar, commitment band; legal review + hero asset TODO |
+| Terms of Service | **Mockup implemented** — hero, sticky nav, 14 section accordions, sidebar highlights & contact, commitment band; legal review + hero asset TODO |
 
 ## Implementation milestones
 - [x] M1: Scaffold Laravel/React/TypeScript/Inertia/Tailwind project (pre-existing starter kit)
@@ -112,6 +112,9 @@ Business owners, finance teams, HR leaders, procurement teams, operations manage
 | 2026-11-12 | **Trucking & Distribution** — `data/module-pages/trucking-distribution.ts`, `/modules/trucking-distribution` | `TruckingDistributionModulePageTest`; **M4 complete** (9/9 modules) |
 | 2026-11-12 | **Pricing page QA** — hero (breadcrumbs, person + navy card), themed plan cards, 2-col FAQ, bottom CTA aligned to comp | Awaiting `hero-person.png` export |
 | 2026-11-12 | **Pricing hero rebuild** — removed duplicate full-bleed comp bg + composite; `PricingHero` matches `03-marketing-pages/pricing.png` structure | QA at 1440px; export hi-res `hero-photograph.png` from design |
+| 2026-11-13 | **Terms of Service** — `TermsOfService.tsx`, `data/terms-of-service.ts`, terms components; route `/terms-of-service` | `npm run build` OK; `TermsOfServicePageTest` passed; legal + hero export TODO |
+| 2026-11-13 | **Privacy Policy** — `PrivacyPolicy.tsx`, `data/privacy-policy.ts`, privacy components; route `/privacy-policy` | `npm run build` OK; `PrivacyPolicyPageTest` passed; legal + hero export TODO |
+| 2026-11-13 | **Solutions & Industries** — `Solutions.tsx`, `data/solutions.ts`, solutions components; `/solutions` | `SolutionsPageTest`; placeholder industry/story imagery in `marketing/solutions/` |
 
 ## Outstanding information and assets
 - Set `APP_NAME` / `VITE_APP_NAME` to **TechBridge Solutions** in deployment `.env` (quoted if the name contains spaces).

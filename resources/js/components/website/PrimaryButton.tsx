@@ -13,8 +13,11 @@ type PrimaryButtonProps = {
 
 export default function PrimaryButton({ children, href, className, type = 'button', disabled, onClick, ...rest }: PrimaryButtonProps) {
     const classes = cn(
-        'inline-flex min-h-11 items-center justify-center rounded-lg bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors',
-        'hover:bg-brand-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary',
+        'inline-flex min-h-11 items-center justify-center rounded-lg bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-sm',
+        'transition-[color,background-color,box-shadow,transform] duration-200 ease-out',
+        'hover:bg-brand-primary/90 motion-safe:hover:-translate-y-px motion-safe:hover:shadow-md',
+        'motion-reduce:transition-none motion-reduce:hover:transform-none',
+        'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary',
         'disabled:pointer-events-none disabled:opacity-50',
         className,
     );
