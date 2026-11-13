@@ -29,7 +29,7 @@ Route::get('/modules/{slug}', function (string $slug) {
 
 Route::get('/solutions', fn () => Inertia::render('Placeholder', ['pageTitle' => 'Solutions & Industries']))->name('solutions');
 Route::get('/pricing', fn () => Inertia::render('Pricing'))->name('pricing');
-Route::get('/about', fn () => Inertia::render('Placeholder', ['pageTitle' => 'About Us']))->name('about');
+Route::get('/about', fn () => Inertia::render('AboutUs'))->name('about');
 Route::get('/resources', fn () => Inertia::render('Placeholder', ['pageTitle' => 'Resources & Blog']))->name('resources');
 Route::get('/blog', fn () => Inertia::render('Placeholder', ['pageTitle' => 'Blog']))->name('blog');
 Route::get('/documentation', fn () => Inertia::render('Placeholder', ['pageTitle' => 'Documentation']))->name('documentation');

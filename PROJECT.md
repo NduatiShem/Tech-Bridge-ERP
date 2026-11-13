@@ -36,7 +36,7 @@ Business owners, finance teams, HR leaders, procurement teams, operations manage
 | Solutions & Industries | Route + placeholder only |
 | Why TechBridge | Route + placeholder only |
 | Pricing & Plans | **Mockup implemented** — verify dollar amounts & plan limits before production |
-| About Us | Route + placeholder only |
+| About Us | **Mockup implemented** — hero, mission/vision/values, stats, story, why choose, leadership, bottom CTA; replace hero/story photos; verify stats |
 | Contact Us | Route + placeholder only |
 | Book a Demo | Route + placeholder only |
 | Request a Quote | Route + placeholder only |
